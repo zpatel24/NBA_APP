@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Fetch using MySQL and Node.js</title>
+</head>
+<body>
+    <div class="table-data">
+<h2>NBA Database</h2>
+    <table border="1">
+        <tr>
+            <th>Rank</th>
+            <th>Player</th>
+            <th>Pos</th>
+            <th>Age</th>
+            <th>Tm</th>
+            <th>G</th>
+            <th>Points</th>
+        </tr>
+        
+        <%
+        if(userData.length!=0){
+        var i=1;
+        userData.forEach(function(data){
+        %>
+        <tr>
+            <td><%=data.Rk%></td>
+            <td><%=data.Player %></td>
+            <td><%=data.Pos %></td>
+            <td><%=data.Age %></td>
+            <td><%=data.Tm%></td>
+            <td><%=data.G%></td>
+            <td><%=data.PTS %></td>
+            
+            <td><a href="/users/edit/<%=data.id%>">Edit</a></td>
+            <td><a href="/users/delete/<%=data.id%>">Delete</a></td>
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+    </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(makeGraph);
+    
+    //used w3schools article on googlecharts to make piechart
+    function makeGraph() {
+        
+        //var x = document.getElementById("tab").rows[0].text();
+        //var y =  $('#tab tr:eq('+3+') td:eq('+2+')').text();
+       // var x = $('tab').closest('tr').find('td:eq(1)').text();
+
+        //console.log(x);
+        var row = document.getElementById("mr");
+        var val = row.getElementsByTagName("td");
+        //console.log(val[1].innerText);
+        var a = parseInt(val[0].innerText);
+        var b = parseInt(val[1].innerText);
+        var c = parseInt(val[2].innerText);
+        var d = parseInt(val[3].innerText);
+        var e = parseInt(val[4].innerText);
+      var data = google.visualization.arrayToDataTable([
+      ['Task', 'Game Stats'],
+      ['Points', a],
+      ['Rebounds', b],
+      ['Assists', c ],
+      ['Steals', d],
+      ['Blocks', e]
+    ]);
+    
+      var options = {'title':'Game Statistics', 'width':500, 'height':500};
+      var chart = new google.visualization.PieChart(document.getElementById('graph'));
+      chart.draw(data, options);
+    }
+    </script>
+<html lang="en">
+<head>
+  <title>Fetch using MySQL and Node.js</title>
+</head>
+<body>
+    <h2>NBA Database</h2>
+    <p style="color:orange ; font-weight: bold; font-size: 30px;" > Analyzing Stats From Ten Best Players</p>
+    <div class="table-data">
+
+    <table id = "tab" border="1">
+        <tr>
+            <th>Total Points</th>
+            <th>Total Rebounds</th>
+            <th>Total Assists</th>
+            <th>Total Steals</th>
+            <th>Total Blocks</th>
+            
+        </tr>
+        
+        <%
+        if(userData.length!=0){
+        var i=1;
+        userData.forEach(function(data){
+        %>
+        <tr id="mr">
+            
+            <td id = "ms"><%=data.TOTALPTS %></td>
+            <td><%=data.TOTALRBS %></td>
+            <td><%=data.TOTALAST %></td>
+            <td><%=data.TOTALSTL %></td>
+            <td><%=data.TOTALBLK %></td>
+            
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+    </table>
+    </div>
+    <div id="graph"></div>
+    <div> <button onclick="location.href = 'http://localhost:3000/fantasy/fantasyList';" id="myButton"; style="background-color: purple ;color:white;width:200px;
+        height:60px;">Return to List</button>
+    </div>
+</body>
+</html>

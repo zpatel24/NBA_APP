@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+  <title>Fetch using MySQL and Node.js</title>
+</head>
+<body>
+    <h2>NBA Database</h2>
+    <p style="color:green; font-weight: bold; font-size: 30px;" > Top 10 Players to choose</p>
+    <div class="table-data">
+
+    <table id = "tab" border="1">
+        <tr>
+            <th>Player</th>
+            <th>Pos</th>
+            <th>Tm</th>
+            <th>Points</th>
+            <th>Rebounds</th>
+            <th>Assists</th>
+            <th>Steals</th>
+            <th>Blocks</th>
+        </tr>
+        
+        <%
+        if(userData.length!=0){
+        var i=1;
+        userData.forEach(function(data){
+        %>
+        <tr id="mr">
+            <td ><%=data.Player %></td>
+            <td><%=data.Pos %></td>
+            <td><%=data.Tm%></td>
+            <td id = "ms"><%=data.PTS %></td>
+            <td><%=data.TRB %></td>
+            <td><%=data.AST %></td>
+            <td><%=data.STL %></td>
+            <td><%=data.BLK %></td>
+            
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+    </table>
+    </div>
+        <div> <button onclick="location.href = 'http://localhost:3000/fantasy2/fantasyGraph';" id="myButton"; style="background-color:blue;color:white;width:200px;
+            height:60px;">View Extended Stats</button>
+        </div>
+</body>
+</html>
